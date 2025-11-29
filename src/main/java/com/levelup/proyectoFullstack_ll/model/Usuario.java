@@ -34,11 +34,9 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private String username;
 
-    @Column(nullable = false)
     private String direccion;
 
-    @Column(nullable = false)
-    private int telefono;
+    private Integer telefono;
 
     @Column(nullable = false)
     private String password;
