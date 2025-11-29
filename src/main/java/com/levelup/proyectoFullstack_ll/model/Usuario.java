@@ -14,7 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuarios", uniqueConstraints = {@UniqueConstraint(columnNames = {"rut", "username"})})
 @Data
 @Builder
 @NoArgsConstructor
@@ -25,36 +25,30 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(unique = true, length = 8, nullable = false)
-    private int run;
-
-    @Column(nullable = false, length = 1)
-    private String dv;
+    @Column(unique = true, length = 9, nullable = false)
+    private String rut;
     
     @Column(nullable = false)
     private String nombre;
 
     @Column(nullable = false)
-    private String email;
+    private String username;
 
     @Column(nullable = false)
-    private String telefono;
+    private String direccion;
+
+    @Column(nullable = false)
+    private int telefono;
 
     @Column(nullable = false)
     private String password;
-
 
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(rol.name()));
-    }
-
-    @Override
-    public String getUsername() { 
-        return email; 
+        return List.of(new SimpleGrantedAuthority((rol.name())));
     }
 
     @Override
@@ -69,11 +63,12 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;    
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
         return true;
     }
+
 }
