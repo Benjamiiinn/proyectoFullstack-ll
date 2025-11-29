@@ -10,6 +10,7 @@ import com.levelup.proyectoFullstack_ll.jwt.JwtService;
 import com.levelup.proyectoFullstack_ll.model.Rol;
 import com.levelup.proyectoFullstack_ll.model.Usuario;
 import com.levelup.proyectoFullstack_ll.repository.UsuarioRepository;
+import com.levelup.proyectoFullstack_ll.util.RutUtils;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,13 +33,15 @@ public class AuthService {
     }
 
     public AuthResponse register(RegisterRequest request) {
+        if (!RutUtils.validarRut(request.getRut())) {
+            throw new IllegalArgumentException("El RUT ingresado no es valido");
+        }
+        
         Usuario usuario = Usuario.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode( request.getPassword()))
                 .nombre(request.getNombre())
                 .rut(request.getRut())
-                .direccion(request.getDireccion())
-                .telefono(request.getTelefono())
                 .rol(Rol.CLIENTE)
                 .build();
 
