@@ -52,5 +52,25 @@ public class AuthService {
             .build();
     }
 
+    public AuthResponse registerAdmin(RegisterRequest request) {
+        if (!RutUtils.validarRut(request.getRut())) {
+            throw new IllegalArgumentException("El RUT ingresado no es valido");
+        }
+
+        Usuario usuario = Usuario.builder()
+                .username(request.getUsername())
+                .password(passwordEncoder.encode( request.getPassword()))
+                .nombre(request.getNombre())
+                .rut(request.getRut())
+                .rol(Rol.ADMIN)
+                .build();
+        
+        usuarioRepository.save(usuario);
+
+        return AuthResponse.builder()
+            .token(jwtService.getToken(usuario))
+            .build();
+    }
+
 
 }
