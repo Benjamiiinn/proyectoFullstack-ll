@@ -2,7 +2,6 @@ package com.levelup.proyectoFullstack_ll.Auth;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,10 +24,12 @@ public class AuthService {
 
     public AuthResponse login(LoginRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        UserDetails usuario = usuarioRepository.findByUsername(request.getUsername()).orElseThrow();
+        Usuario usuario = usuarioRepository.findByUsername(request.getUsername()).orElseThrow();
         String token = jwtService.getToken(usuario);
         return AuthResponse.builder()
             .token(token)
+            .role(usuario.getRol().name())
+            .userId(usuario.getId())
             .build();
     }
 
@@ -49,6 +50,7 @@ public class AuthService {
 
         return AuthResponse.builder()
             .token(jwtService.getToken(usuario))
+            .role(usuario.getRol().name())
             .build();
     }
 
