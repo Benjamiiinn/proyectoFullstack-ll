@@ -1,7 +1,6 @@
 package com.levelup.proyectoFullstack_ll.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +32,7 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Producto>> obtenerProducto(@PathVariable int id) {
+    public ResponseEntity<Producto> obtenerProducto(@PathVariable int id) {
         return ResponseEntity.ok(productoService.findById(id));
     }
 

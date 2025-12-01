@@ -1,5 +1,7 @@
 package com.levelup.proyectoFullstack_ll.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,9 +35,11 @@ public class DetallePedido {
 
     @ManyToOne
     @JoinColumn(name = "id_pedido", nullable = false)
+    @JsonIgnoreProperties({"detalles", "envio", "usuario"})
     private Pedido pedido;
 
     @ManyToOne
     @JoinColumn(name = "id_producto", nullable = false)
+    @JsonIgnoreProperties({"categoria", "plataforma", "especificaciones"})
     private Producto producto;
 }

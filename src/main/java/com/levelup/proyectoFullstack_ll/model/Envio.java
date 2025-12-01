@@ -1,5 +1,7 @@
 package com.levelup.proyectoFullstack_ll.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,5 +31,6 @@ public class Envio {
     private String comuna;
 
     @OneToOne(mappedBy= "envio")
+    @JsonIgnore
     private Pedido pedido;
 }

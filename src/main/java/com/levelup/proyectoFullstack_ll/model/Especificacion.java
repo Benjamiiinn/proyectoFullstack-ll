@@ -1,5 +1,7 @@
 package com.levelup.proyectoFullstack_ll.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +18,7 @@ import lombok.Data;
 public class Especificacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(nullable = false)
     private String nombre;
@@ -26,5 +28,6 @@ public class Especificacion {
 
     @ManyToOne
     @JoinColumn(name = "idProducto")
+    @JsonIgnoreProperties("especificaciones")
     private Producto producto;
 }

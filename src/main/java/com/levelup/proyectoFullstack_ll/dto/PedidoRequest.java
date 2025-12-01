@@ -18,7 +18,7 @@ public class PedidoRequest {
     private List<ProductoPedidoDto> items;
 
     @Data
-    public static class  ProductoPedidoDto {
+    public static class ProductoPedidoDto {
         private int idProducto;
         private int cantidad;
         private int precio;
