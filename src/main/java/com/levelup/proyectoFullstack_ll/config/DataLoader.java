@@ -101,7 +101,7 @@ public class DataLoader {
                 "Nintendo Switch OLED",
                 300000, // Precio sin puntos
                 "La versión mejorada de Nintendo Switch con pantalla OLED de 7 pulgadas.",
-                "/src/assets/images/XboxSeriesX.png",
+                "/src/assets/images/SwitchOLED.webp",
                 20,
                 true, // Destacado
                 consolas,
