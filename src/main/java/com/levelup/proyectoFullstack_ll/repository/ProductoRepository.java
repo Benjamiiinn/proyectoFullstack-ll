@@ -9,7 +9,7 @@ import com.levelup.proyectoFullstack_ll.model.Producto;
 
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
-    List<Producto> findByCategoriaNombre(String nombreCategoria);
+    List<Producto> findByCategoriaNombre(String nombre);
     List<Producto> findByDestacadoTrue();
-
+    List<Producto> findByPlataformaNombre(String nombre);
 }

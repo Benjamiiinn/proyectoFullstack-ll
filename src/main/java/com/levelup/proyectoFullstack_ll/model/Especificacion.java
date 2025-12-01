@@ -1,6 +1,6 @@
 package com.levelup.proyectoFullstack_ll.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,6 +28,6 @@ public class Especificacion {
 
     @ManyToOne
     @JoinColumn(name = "idProducto")
-    @JsonIgnoreProperties("especificaciones")
+    @JsonIgnore
     private Producto producto;
 }

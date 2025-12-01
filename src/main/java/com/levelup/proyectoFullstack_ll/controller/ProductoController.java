@@ -36,11 +36,21 @@ public class ProductoController {
         return ResponseEntity.ok(productoService.findById(id));
     }
 
+    @GetMapping("/categoria/{nombre}")
+    public ResponseEntity<List<Producto>> buscarPorCategoria(@PathVariable String nombre) {
+        return ResponseEntity.ok(productoService.findByCategoria(nombre));
+    }
+
     @GetMapping("/destacados")
     public ResponseEntity<List<Producto>> listarDestacados() {
         return ResponseEntity.ok(productoService.findDestacados());
     }
 
+    @GetMapping("/plataforma/{nombre}")
+    public ResponseEntity<List<Producto>> buscarPorPlataforma(@PathVariable String nombre) {
+        return ResponseEntity.ok(productoService.findByPlataforma(nombre));
+    }
+    
     @PostMapping
     public ResponseEntity<Producto> crearProducto(@RequestBody Producto producto) {
         return ResponseEntity.ok(productoService.save(producto));

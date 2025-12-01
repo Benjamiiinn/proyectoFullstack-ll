@@ -38,6 +38,11 @@ public class ProductoService {
     }
 
     @Transactional
+    public List<Producto> findByPlataforma(String nombrePlataforma) {
+        return productoRepository.findByPlataformaNombre(nombrePlataforma);
+    }
+
+    @Transactional
     public List<Producto> findDestacados() {
         return productoRepository.findByDestacadoTrue();
     }
