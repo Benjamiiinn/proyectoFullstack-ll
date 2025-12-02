@@ -41,6 +41,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/usuarios/**").hasAuthority("ADMIN") //Gestion de usuarios
                 //Productos
                 .requestMatchers(HttpMethod.GET, "/api/v1/productos/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/v1/productos/").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/api/v1/productos/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/v1/productos/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/v1/productos/**").hasAuthority("ADMIN")
