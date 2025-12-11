@@ -66,6 +66,12 @@ public class ProductoService {
                 .orElseThrow(() -> new RuntimeException("Plataforma no encontrada"));
             producto.setPlataforma(plat);
         }       
+
+        if (producto.getEspecificaciones() != null) {
+            producto.getEspecificaciones().forEach(especifiacion -> {
+                especifiacion.setProducto(producto);
+            });
+        }
         return productoRepository.save(producto);
     }
 
