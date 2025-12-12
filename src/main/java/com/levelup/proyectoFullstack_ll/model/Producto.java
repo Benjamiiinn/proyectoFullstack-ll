@@ -45,6 +45,7 @@ public class Producto {
     @Column(length = 1000)
     private String descripcion;
 
+    @Column(length = 1000)
     private String imagen;
 
     private Integer stock;
