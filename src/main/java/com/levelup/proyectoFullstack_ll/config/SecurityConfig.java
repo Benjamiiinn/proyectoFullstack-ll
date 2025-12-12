@@ -38,7 +38,12 @@ public class SecurityConfig {
                 authRequest
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/auth/**").permitAll() //Registro
-                .requestMatchers("/api/v1/usuarios/**").hasAuthority("ADMIN") //Gestion de usuarios
+
+                //Ver y editar algun perfil individualmente a cualquier usuario que este logueado.
+                .requestMatchers(HttpMethod.GET,"/api/v1/usuarios/*").authenticated()
+                .requestMatchers(HttpMethod.PUT, "/api/v1/usuarios/*").authenticated()
+                //Listar todos y borrar para ADMIN
+                .requestMatchers("/api/v1/usuarios/**").hasAuthority("ADMIN")
                 //Productos
                 .requestMatchers(HttpMethod.GET, "/api/v1/productos/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/v1/productos/").hasAuthority("ADMIN")
