@@ -40,8 +40,8 @@ public class SecurityConfig {
                 .requestMatchers("/auth/**").permitAll() //Registro
 
                 //Ver y editar algun perfil individualmente a cualquier usuario que este logueado.
-                .requestMatchers(HttpMethod.GET,"/api/v1/usuarios/*").authenticated()
-                .requestMatchers(HttpMethod.PUT, "/api/v1/usuarios/*").authenticated()
+                .requestMatchers(HttpMethod.GET,"/api/v1/usuarios/{id}").authenticated()
+                .requestMatchers(HttpMethod.PUT, "/api/v1/usuarios/{id}").authenticated()
                 //Listar todos y borrar para ADMIN
                 .requestMatchers("/api/v1/usuarios/**").hasAuthority("ADMIN")
                 //Productos
