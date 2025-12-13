@@ -54,13 +54,24 @@ public class UsuarioService {
     public Usuario update(int id, Usuario usuarioDetails) {
         Usuario usuarioExistente = findById(id);
 
-        usuarioExistente.setNombre(usuarioDetails.getNombre());
-        usuarioExistente.setUsername(usuarioDetails.getUsername());
-        usuarioExistente.setRut(usuarioDetails.getRut());
+        if (usuarioDetails.getNombre() != null && !usuarioDetails.getNombre().isEmpty()) {
+            usuarioExistente.setNombre(usuarioDetails.getNombre());
+        }
+
+        if (usuarioDetails.getUsername() != null && !usuarioDetails.getUsername().isEmpty()) {
+            usuarioExistente.setUsername(usuarioDetails.getUsername());
+        }
+        if (usuarioDetails.getRut() != null && !usuarioDetails.getRut().isEmpty()) {
+            usuarioExistente.setRut(usuarioDetails.getRut());   
+        }
+
         usuarioExistente.setDireccion(usuarioDetails.getDireccion());
         usuarioExistente.setTelefono(usuarioDetails.getTelefono());
-        usuarioExistente.setRol(usuarioDetails.getRol());
 
+        if (usuarioDetails.getRol() != null) {
+            usuarioExistente.setRol(usuarioDetails.getRol());
+        }
+        
         if (usuarioDetails.getPassword() != null && !usuarioDetails.getPassword().isEmpty()) {
             usuarioExistente.setPassword(passwordEncoder.encode(usuarioDetails.getPassword()));
         }
