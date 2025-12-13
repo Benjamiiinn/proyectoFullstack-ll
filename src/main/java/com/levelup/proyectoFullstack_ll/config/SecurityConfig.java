@@ -38,11 +38,13 @@ public class SecurityConfig {
                 authRequest
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/auth/**").permitAll() //Registro
+                .requestMatchers("/error").permitAll() //Evitar errores falsos
 
                 //Ver y editar algun perfil individualmente a cualquier usuario que este logueado.
                 .requestMatchers(HttpMethod.GET,"/api/v1/usuarios/{id}").authenticated()
                 .requestMatchers(HttpMethod.PUT, "/api/v1/usuarios/{id}").authenticated()
-                //Listar todos y borrar para ADMIN
+                //Listar todos y cambiar estado para ADMIN
+                .requestMatchers(HttpMethod.PATCH, "/api/v1/usuarios/{id}/estado").hasAuthority("ADMIN")
                 .requestMatchers("/api/v1/usuarios/**").hasAuthority("ADMIN")
                 //Productos
                 .requestMatchers(HttpMethod.GET, "/api/v1/productos/**").permitAll()
