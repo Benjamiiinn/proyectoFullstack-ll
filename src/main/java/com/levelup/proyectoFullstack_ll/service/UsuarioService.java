@@ -3,8 +3,6 @@ package com.levelup.proyectoFullstack_ll.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.management.RuntimeErrorException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -80,10 +78,19 @@ public class UsuarioService {
     }
 
     @Transactional
+    public Usuario toggleEstado(int id) {
+        Usuario usuario = usuarioRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + id));
+        boolean estadoActual = usuario.isEnabled();
+        usuario.setEnabled(!estadoActual);
+        return usuarioRepository.save(usuario);
+    }
+
+    @Transactional
     public void deleteById(int id) {
-        if (!usuarioRepository.existsById(id)) {
-            throw new RuntimeErrorException(null, "No se puede eliinar: El usuario no existe");
-        }
-        usuarioRepository.deleteById(id);
+        Usuario usuario = usuarioRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        usuario.setEnabled(false);
+        usuarioRepository.save(usuario);
     }
 }
