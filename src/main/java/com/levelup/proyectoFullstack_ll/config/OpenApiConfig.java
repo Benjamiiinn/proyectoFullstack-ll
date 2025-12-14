@@ -64,7 +64,7 @@ public class OpenApiConfig {
                                 .url("http://localhost:8080")
                                 .description("Servidor de Desarrollo Local"),
                         new Server()
-                                .url("https://api.tiendafullstack.com")
+                                .url("https://100.24.109.46:8080")
                                 .description("Servidor de Producción")
                 ))
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
