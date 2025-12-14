@@ -39,6 +39,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/auth/**").permitAll() //Registro
                 .requestMatchers("/error").permitAll() //Evitar errores falsos
+                //Swagger UI
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
 
                 //Ver y editar algun perfil individualmente a cualquier usuario que este logueado.
                 .requestMatchers(HttpMethod.GET,"/api/v1/usuarios/{id}").authenticated()
