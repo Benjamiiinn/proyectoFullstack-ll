@@ -39,4 +39,11 @@ public class ContactoService {
         contactoRepository.deleteById(id);
     }
 
+    @Transactional
+    public Contacto toggleLeido(int id) {
+        Contacto contacto = findById(id);
+        contacto.setLeido(!contacto.isLeido());
+        return contactoRepository.save(contacto);
+    }
+
 }
