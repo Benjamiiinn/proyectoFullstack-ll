@@ -94,7 +94,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         // Permite el puerto de tu frontend (ej: 5173 para Vite)
-        configuration.setAllowedOrigins(List.of("http://localhost:5173", "http://100.24.109.46:8080")); 
+        configuration.setAllowedOrigins(List.of("http://localhost:5173", "http://100.24.109.46:8080", "http://levelup-store.s3-website-us-east-1.amazonaws.com")); 
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Requested-With", "Accept"));
         configuration.setAllowCredentials(true);
